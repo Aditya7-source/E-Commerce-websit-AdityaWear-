@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Profile - AdityaWear</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+<!-- Header -->
+<header class="bg-white shadow p-4">
+  <div class="max-w-6xl mx-auto flex justify-between items-center">
+  <h4 class="m-0 fw-bold">
+  <span style="color: orange;">ADITYA</span>
+  <span style="color: #0056d2;">WEAR</span>
+  </h4>
+
+    <div class="flex gap-4">
+      <a href="index.html" class="text-sm text-gray-600 hover:text-indigo-600">Back to Home</a>
+      <button id="logoutBtn" class="text-sm text-red-500 hover:underline">Logout</button>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-6xl mx-auto p-6">
+  <h2 class="text-2xl font-semibold text-gray-800 mb-6">My Profile</h2>
+
+  <!-- Profile & Address Info -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+    <!-- User Info -->
+    <div class="bg-white shadow rounded-lg p-6 text-center">
+      <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="User Avatar" class="h-24 w-24 mx-auto rounded-full mb-4">
+      <h3 id="userName" class="text-lg font-bold text-gray-800 mb-1">Loading...</h3>
+      <p id="userEmail" class="text-sm text-gray-600 mb-1">-</p>
+      <p id="userPhone" class="text-sm text-gray-600 mb-4">-</p>
+      <button class="mt-2 px-4 py-2 text-sm bg-indigo-600 text-white rounded hover:bg-indigo-700">Edit Profile</button>
+    </div>
+
+    <!-- Shipping Address -->
+    <div class="bg-white shadow rounded-lg p-6">
+      <h3 class="text-lg font-medium text-gray-800 mb-4">Shipping Address</h3>
+      <div id="addressInfo" class="text-sm text-gray-700 space-y-2">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+
+    <!-- Order Status -->
+    <div class="bg-white shadow rounded-lg p-6">
+      <h3 class="text-lg font-medium text-gray-800 mb-4">Order Status</h3>
+      <div id="orderStatus" class="text-sm text-gray-700 mb-4 space-y-1">
+        <!-- Filled by JS -->
+      </div>
+      <div class="w-full bg-gray-200 rounded-full h-2.5">
+        <div id="trackingBar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-500 ease-in-out" style="width: 25%"></div>
+      </div>
+      <div class="flex justify-between text-xs text-gray-500 mt-2">
+        <span>Placed</span><span>Shipped</span><span>Out for Delivery</span><span>Delivered</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Order -->
+  <div class="bg-white shadow rounded-lg p-6 mt-8">
+    <h3 class="text-lg font-medium text-gray-800 mb-4">Recent Order</h3>
+    <div id="recentOrder" class="space-y-4">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const user = JSON.parse(localStorage.getItem("userDetails")) || {};
+  const cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+  const status = localStorage.getItem("orderStatus") || "No Order";
+  const orderDateRaw = localStorage.getItem("orderDate");
+
+  // Format Dates
+  let orderDateText = "-";
+  let arrivalDateText = "-";
+  if (orderDateRaw) {
+    const orderDate = new Date(orderDateRaw);
+    const arrivalDate = new Date(orderDate);
+    arrivalDate.setDate(orderDate.getDate() + 3);
+
+    orderDateText = orderDate.toDateString();
+    arrivalDateText = arrivalDate.toDateString();
+  }
+
+  // User Info
+  document.getElementById("userName").textContent = `${user.firstName || ''} ${user.lastName || ''}`;
+  document.getElementById("userEmail").textContent = user.email || "-";
+  document.getElementById("userPhone").textContent = user.phone || "-";
+
+  // Address Info
+  document.getElementById("addressInfo").innerHTML = `
+    <p>${user.address || '-'}</p>
+    <p>${user.city || ''}, ${user.state || ''} - ${user.zip || ''}</p>
+  `;
+
+  // Order Status
+  const statusMap = {
+    "Order Placed": 25,
+    "Shipped": 50,
+    "Out for Delivery": 75,
+    "Delivered": 100
+  };
+  document.getElementById("orderStatus").innerHTML = `
+    <p><strong>Status:</strong> <span class="text-indigo-600">${status}</span></p>
+    <p><strong>Ordered on:</strong> ${orderDateText}</p>
+    <p><strong>Arriving by:</strong> ${arrivalDateText}</p>
+  `;
+  document.getElementById("trackingBar").style.width = (statusMap[status] || 0) + "%";
+
+  // Recent Orders
+  const recentOrderDiv = document.getElementById("recentOrder");
+  if (cart.length === 0) {
+    recentOrderDiv.innerHTML = "<p class='text-gray-500 text-sm'>No recent orders.</p>";
+  } else {
+    cart.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "flex items-center justify-between border-b pb-3";
+      div.innerHTML = `
+        <div class="flex items-center">
+          <img src="${item.image}" alt="${item.title}" class="h-16 w-16 object-cover rounded mr-4">
+          <div>
+            <p class="font-medium text-gray-800">${item.title}</p>
+            <p class="text-gray-500 text-sm">Qty: ${item.quantity}</p>
+          </div>
+        </div>
+        <div class="text-indigo-600 font-semibold">₹${item.price * item.quantity}</div>
+      `;
+      recentOrderDiv.appendChild(div);
+    });
+  }
+
+  // Logout
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    localStorage.clear();
+    alert("Logged out successfully!");
+    window.location.href = "index.html";
+  });
+});
+</script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up - AdityaWear</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f') no-repeat center center;
+      background-size: cover;
+    }
+
+    .frame {
+      display: flex;
+      width: 95%;
+      max-width: 850px;
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .left-panel {
+      flex: 1;
+      padding: 30px;
+      background-color: rgba(255, 255, 255, 0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+
+    .left-panel img {
+      width: 100%;
+      max-width: 250px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .left-panel h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .left-panel p {
+      font-size: 14px;
+      max-width: 300px;
+    }
+
+    .right-panel {
+      flex: 1;
+      padding: 30px;
+      backdrop-filter: blur(12px);
+      background-color: rgba(255, 255, 255, 0.35);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .right-panel h2 {
+      text-align: center;
+      color: #ff6f00;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .input-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #333;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    .signup-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #0288d1;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .signup-btn:hover {
+      background-color: #0277bd;
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 15px;
+      color: #333;
+    }
+
+    .login-link a {
+      color: #ff6f00;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .strength {
+      font-size: 13px;
+      margin-top: 4px;
+      color: green;
+    }
+
+    @media screen and (max-width: 768px) {
+      .frame {
+        flex-direction: column;
+        width: 90%;
+      }
+
+      .left-panel, .right-panel {
+        width: 100%;
+        border: none;
+      }
+
+      .right-panel {
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="frame">
+    <!-- Left Panel -->
+    <div class="left-panel">
+      <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/2b1e9e121967311.60d096515bea5.png" alt="Fashion Style">
+      <h2>Welcome to AdityaWear </h2>
+      <p>Join India’s trendiest fashion store. Be bold. Be beautiful. Be you.</p>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="right-panel">
+      <h2>🛍️ Sign Up Now</h2>
+      <form id="signupForm">
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required>
+        </div>
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" required>
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" required>
+          <div class="strength" id="strength-msg"></div>
+        </div>
+        <div class="input-group">
+          <label for="confirm">Confirm Password</label>
+          <input type="password" id="confirm" required>
+        </div>
+        <button type="submit" class="signup-btn">Create Account</button>
+      </form>
+      <div class="login-link">
+        Already have an account? <a href="login.html">Login here</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS Password Strength & Signup Logic -->
+  <script>
+    const passwordInput = document.getElementById("password");
+    const strengthMsg = document.getElementById("strength-msg");
+
+    passwordInput.addEventListener("input", () => {
+      const val = passwordInput.value;
+      if (val.length < 6) strengthMsg.textContent = "Weak password";
+      else if (val.match(/[0-9]/) && val.match(/[A-Z]/) && val.match(/[a-z]/))
+        strengthMsg.textContent = "Strong password";
+      else strengthMsg.textContent = "Medium strength";
+    });
+
+    document.getElementById("signupForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value.trim();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const confirm = document.getElementById("confirm").value.trim();
+
+      if (password !== confirm) {
+        alert("Passwords do not match.");
+        return;
+      }
+
+      localStorage.setItem("user_email", email);
+      localStorage.setItem("user_name", username);
+      localStorage.setItem("user_pass", password);
+
+      alert("Account created successfully!");
+      window.location.href = "login.html";
+    });
+  </script>
+
+</body>
+</html>
+
+

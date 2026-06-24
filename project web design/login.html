@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AdityaWear Login</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f') no-repeat center center;
+      background-size: cover;
+    }
+
+    .frame {
+      width: 95%;
+      max-width: 800px;
+      height: 600px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      background-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 20px rgba(255, 165, 0, 0.2);
+      display: flex;
+    }
+
+    .left-panel {
+      flex: 1;
+      backdrop-filter: blur(5px);
+      background: rgba(255, 255, 255, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+    }
+
+    .left-panel img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .left-panel h2 {
+      color: #ff9800;
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .left-panel p {
+      color: #000;
+      max-width: 300px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .right-panel {
+      flex: 1;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .right-panel h2 {
+      text-align: center;
+      color: #0277bd;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #fff;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .checkbox {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+    }
+
+    .checkbox input {
+      margin-right: 10px;
+    }
+
+    .checkbox label {
+      color: white;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #0288d1;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .login-btn:hover {
+      background-color: #0277bd;
+    }
+
+    .forgot {
+      text-align: right;
+      font-size: 13px;
+      margin-top: -8px;
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    .signup {
+      margin-top: 15px;
+      text-align: center;
+      color: white;
+    }
+
+    .signup a {
+      color: #ff9800;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    #spinner {
+      display: none;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .loader {
+      border: 4px solid #cce5cc;
+      border-top: 4px solid #0288d1;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media screen and (max-width: 768px) {
+      .frame {
+        flex-direction: column;
+        height: auto;
+        border-radius: 10px;
+      }
+
+      .left-panel, .right-panel {
+        width: 100%;
+      }
+
+      .left-panel {
+        order: 2;
+      }
+
+      .right-panel {
+        order: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="frame">
+    <!-- Left Panel -->
+    <div class="left-panel">
+      <img src="WhatsApp Image 2025-07-07 at 01.25.48_ebbe7616.jpg" alt="Help Farmers">
+      <h2>Welcome Heartly</h2>
+      <p>"Life isn't perfect, but your outfit can be."</p>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="right-panel">
+      <h2>🧡 WELCOME TO ADITYA WEAR 💙</h2>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" required>
+        </div>
+        <div class="forgot"><a href="#">Forgot Password?</a></div>
+        <div class="checkbox">
+          <input type="checkbox" id="rememberMe">
+          <label for="rememberMe">Remember me</label>
+        </div>
+        <button type="submit" class="login-btn">SIGN IN</button>
+        <div id="spinner"><div class="loader"></div></div>
+        <div class="signup">
+          Don't have an account? <a href="signup.html">Sign Up</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript Login Logic -->
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const inputUser = document.getElementById("username").value.trim();
+      const inputPass = document.getElementById("password").value.trim();
+      const remember = document.getElementById("rememberMe").checked;
+      const storedUser = localStorage.getItem("user_name");
+      const storedPass = localStorage.getItem("user_pass");
+
+      const loginBtn = document.querySelector(".login-btn");
+      const spinner = document.getElementById("spinner");
+
+      loginBtn.disabled = true;
+      spinner.style.display = "block";
+
+      setTimeout(() => {
+        if (inputUser === storedUser && inputPass === storedPass) {
+          if (remember) {
+            localStorage.setItem("remembered_user", inputUser);
+          } else {
+            localStorage.removeItem("remembered_user");
+          }
+
+          localStorage.setItem("loggedInUser", JSON.stringify({ username: inputUser }));
+
+          // ✅ Redirect after login if Buy Now or Cart Checkout intent
+          const buyNowItem = localStorage.getItem("buyNowIntent");
+          if (buyNowItem) {
+            localStorage.setItem("cartItems", JSON.stringify([JSON.parse(buyNowItem)]));
+            localStorage.removeItem("buyNowIntent");
+            window.location.href = "checkout.html";
+            return;
+          }
+
+          const cartIntent = localStorage.getItem("cartCheckoutIntent");
+          if (cartIntent) {
+            localStorage.removeItem("cartCheckoutIntent");
+            window.location.href = "checkout.html";
+            return;
+          }
+
+          // Default redirect
+          window.location.href = "index.html";
+
+        } else {
+          alert("Invalid login credentials.");
+          spinner.style.display = "none";
+          loginBtn.disabled = false;
+        }
+      }, 1500);
+    });
+
+    window.onload = function () {
+      const rememberedUser = localStorage.getItem("remembered_user");
+      if (rememberedUser) {
+        document.getElementById("username").value = rememberedUser;
+        document.getElementById("rememberMe").checked = true;
+      }
+    };
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+

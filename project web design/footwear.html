@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Footwear Collection - AdityaWear</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function saveProduct(image, title, price) {
+      const product = { image, title, price };
+      localStorage.setItem("selectedProduct", JSON.stringify(product));
+    }
+  </script>
+  <style>
+    .logo-img {
+      height: 45px;
+      width: 300px;
+      object-fit: contain;
+    }
+
+    .card-img-top {
+      height: 300px !important;
+      width: 100% !important;
+      object-fit: cover;
+      border-radius: 8px 8px 0 0;
+      transition: transform 0.3s ease;
+    }
+
+    .card-img-top:hover {
+      transform: scale(1.03);
+    }
+
+    .card {
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+  </style>
+</head>
+<body>
+<!-- Navbar -->
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Header -->
+<nav class="navbar bg-white shadow-sm px-3 py-2">
+  <div class="container-fluid d-flex align-items-center justify-content-between">
+
+    <!-- Text Logo -->
+ <h4 class="m-0 fw-bold">
+  <span style="color: orange;">ADITYA</span>
+  <span style="color: #0056d2;">WEAR</span>
+</h4>
+
+
+
+    <!-- Search Bar (Medium Length) -->
+<div class="mx-4" style="flex: 0 0 1000px;">
+  <input type="text" id="categorySearch" class="form-control" placeholder="Search for products..." />
+</div>
+
+    <!-- Login & Cart -->
+    <div class="d-flex align-items-center">
+      <a href="login.html" class="text-dark text-decoration-none me-4">
+        <i class="bi bi-person"></i> Login
+      </a>
+      <a href="cart.html" class="text-dark text-decoration-none">
+        <i class="bi bi-cart"></i> Cart
+      </a>
+    </div>
+
+  </div>
+</nav>
+<marquee behavior="scroll" direction="left" scrollamount="7" style="background: #f9f9f9; padding: 20px;">
+  <img src="shoes10.jpg" alt="Shoes" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="shoes5.jpg" alt="Saree" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="shoes3.jpg" alt="T-shirt" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="shoes9.jpg" alt="Bag" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="shoes11.jpg" alt="Jeans" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="shoes12.jpg" alt="Kurtis" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="shoes6.jpg" alt="Kurtis" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="shoes2.jpg" alt="Kurtis" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+
+</marquee>
+<!-- Product Grid -->
+<div class="container my-5">
+  <h4 class="mb-4 fw-bold">👟 Trending Footwear</h4>
+  <div class="row g-4">
+
+    <!-- Product Card Example -->
+    <div class="col-6 col-md-3 searchable" data-search="Lancer">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shoes.jpg", "Lancer", 2499)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shoes.jpg" class="card-img-top" alt="Casual Running Shoes">
+          <div class="card-body">
+            <h6 class="fw-semibold">Lancer</h6>
+            <p class="mb-1 text-success">₹499</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.2 | 8418 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-6 col-md-3 searchable" data-search="Jordan">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shoes2.jpg", "Jordan", 2699)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shoes2.jpg" class="card-img-top" alt="Sports Sneakers">
+          <div class="card-body">
+            <h6 class="fw-semibold">Jordan</h6>
+            <p class="mb-1 text-success">₹699</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.5 | 5500 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-6 col-md-3 searchable" data-search="casual running shoes">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shoes3.jpg", "Casual Running Shoes", 499)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shoes3.jpg" class="card-img-top" alt="Casual Running Shoes">
+          <div class="card-body">
+            <h6 class="fw-semibold">Casual Running Shoes</h6>
+            <p class="mb-1 text-success">₹499</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.2 | 8418 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-6 col-md-3 searchable" data-search="sports sneakers">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shoes5.jpg", "Sports Sneakers", 699)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shoes5.jpg" class="card-img-top" alt="Sports Sneakers">
+          <div class="card-body">
+            <h6 class="fw-semibold">Sports Sneakers</h6>
+            <p class="mb-1 text-success">₹699</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.5 | 5500 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-6 col-md-3 searchable" data-search="New Balance 574">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shoes6.jpg", "New Balance 574", 1599)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shoes6.jpg" class="card-img-top" alt="New Balance 574">
+          <div class="card-body">
+            <h6 class="fw-semibold">New Balance 574</h6>
+            <p class="mb-1 text-success">₹1599</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.2 | 8418 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-6 col-md-3 searchable" data-search="New Balance 555">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shoes7.png", "New Balance 555", 1299)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shoes7.png" class="card-img-top" alt="">
+          <div class="card-body">
+            <h6 class="fw-semibold">New Balance 555</h6>
+            <p class="mb-1 text-success">₹1299</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.5 | 5500 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-6 col-md-3 searchable" data-search="Converse Chuck Taylor All Star">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shoes8.webp", "Converse Chuck Taylor All Star", 1499)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shoes8.webp" class="card-img-top" alt="Converse Chuck Taylor All Star">
+          <div class="card-body">
+            <h6 class="fw-semibold">Converse Chuck Taylor All Star</h6>
+            <p class="mb-1 text-success">₹1499</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.2 | 8418 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-6 col-md-3 searchable" data-search="Vans Old Skool">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shoes9.jpg", "Vans Old Skool", 1699)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shoes9.jpg" class="card-img-top" alt="Vans Old Skool">
+          <div class="card-body">
+            <h6 class="fw-semibold">Vans Old Skool</h6>
+            <p class="mb-1 text-success">₹1699</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.5 | 5500 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-6 col-md-3 searchable" data-search="Reebok Classic Leather">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shoes10.jpg", "Reebok Classic Leather", 1899)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shoes10.jpg" class="card-img-top" alt="Reebok Classic Leather">
+          <div class="card-body">
+            <h6 class="fw-semibold">Reebok Classic Leather</h6>
+            <p class="mb-1 text-success">₹1899</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.2 | 8418 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-6 col-md-3 searchable" data-search="Puma RS-X">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shoes11.jpg", "Puma RS-X", 1999)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shoes11.jpg" class="card-img-top" alt="Puma RS-X">
+          <div class="card-body">
+            <h6 class="fw-semibold">Puma RS-X</h6>
+            <p class="mb-1 text-success">₹1999</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.5 | 5500 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-6 col-md-3 searchable" data-search="Nike Air Force 1">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shoes3.jpg", "Nike Air Force 1", 1399)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shoes3.jpg" class="card-img-top" alt="Nike Air Force 1">
+          <div class="card-body">
+            <h6 class="fw-semibold">Nike Air Force 1</h6>
+            <p class="mb-1 text-success">₹1399</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.2 | 8418 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-6 col-md-3 searchable" data-search="Adidas Ultraboost">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shoes2.jpg", "Adidas Ultraboost", 1599)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shoes2.jpg" class="card-img-top" alt="Adidas Ultraboost">
+          <div class="card-body">
+            <h6 class="fw-semibold">Adidas Ultraboost</h6>
+            <p class="mb-1 text-success">₹1599</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.5 | 5500 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- ADD remaining products -->
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-4 mt-5">
+  <div class="container text-center">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <h6>About Us</h6>
+        <p class="small">AdityaWear is your go-to fashion destination for Men, Women, and Kids. Quality assured at best prices.</p>
+      </div>
+      <div class="col-md-4">
+        <h6>Contact</h6>
+        <p class="small mb-0">📞 +91 9876543210</p>
+        <p class="small mb-0">✉️ support@adityawear.com</p>
+        <p class="small">📍 Odisha, India</p>
+      </div>
+      <div class="col-md-4">
+        <h6>Follow Us</h6>
+        <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="text-white me-3"><i class="bi bi-twitter-x"></i></a>
+      </div>
+    </div>
+    <hr class="bg-light">
+    <p class="mb-0 small">© 2025 AdityaWear. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Search Script -->
+<script>
+  const searchInput = document.getElementById("categorySearch");
+  const productCards = document.querySelectorAll(".col-6.col-md-3.searchable");
+
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase();
+    productCards.forEach((card) => {
+      const text = card.dataset.search?.toLowerCase() || "";
+      card.style.display = text.includes(query) ? "" : "none";
+    });
+  });
+</script>
+
+</body>
+</html>
+
+

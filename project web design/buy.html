@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buy Product - AdityaWear</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+    }
+    .navbar-brand {
+      font-weight: bold;
+      color: #e74c3c;
+    }
+    .product-img {
+      width: 100%;
+      max-height: 500px;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .size-btn {
+      padding: 8px 16px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 8px;
+      margin-bottom: 10px;
+    }
+    .size-btn.active {
+      background-color: #2c3e50;
+      color: #fff;
+      border-color: #2c3e50;
+    }
+    .btn-dark {
+      background-color: #2c3e50;
+      border: none;
+    }
+    .btn-dark:hover {
+      background-color: #1a252f;
+    }
+    .btn-orange {
+      background-color: orange;
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border-radius: 0.375rem;
+    }
+    .btn-orange:hover {
+      background-color: darkorange;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <div class="container">
+    <h4 class="m-0 fw-bold">
+      <span style="color: orange;">ADITYA</span>
+      <span style="color: #0056d2;">WEAR</span>
+    </h4>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="cart.html">Cart</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container my-5">
+  <div class="row g-5">
+    <div class="col-md-6">
+      <img id="product-img" src="" class="product-img" alt="Product Image" />
+    </div>
+    <div class="col-md-6">
+      <h2 id="product-title" class="fw-bold">Loading...</h2>
+      <p class="text-danger fs-4 fw-semibold">₹<span id="product-total">0</span></p>
+      <small class="text-muted">Unit Price: ₹<span id="product-price">0</span></small>
+      <ul class="mt-3" id="product-description"></ul>
+
+      <div class="mt-4">
+        <strong>Select Size:</strong><br/>
+        <div class="d-flex flex-wrap mt-2" id="size-buttons">
+          <button class="size-btn">XS</button>
+          <button class="size-btn">S</button>
+          <button class="size-btn active">M</button>
+          <button class="size-btn">L</button>
+          <button class="size-btn">XL</button>
+        </div>
+      </div>
+
+      <div class="d-grid gap-2 mt-4">
+        <button class="btn btn-dark btn-lg" onclick="addToCart()">Add to Cart</button>
+        <button class="btn btn-orange btn-lg" onclick="handleBuyNow()">Buy Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-5">
+  <h4 class="mb-4 fw-bold">Similar Products</h4>
+  <div class="row g-4" id="similar-products"></div>
+</div>
+
+<script>
+  const product = JSON.parse(localStorage.getItem("selectedProduct"));
+
+  const productDescriptions = {
+    "Classic Men Shirt": ["100% premium cotton", "Breathable fabric", "Formal and casual fit", "Durable stitching", "Available in 3 colors"],
+    "Elegant Silk Saree": ["Pure silk blend", "Traditional motifs", "Rich pallu design", "Perfect for weddings", "Includes blouse piece"],
+    "Running Shoes": ["Mesh upper for breathability", "Rubber sole", "Ideal for daily jogging", "Cushioned footbed", "Durable grip"],
+    "Casual Cotton Shirt": ["Soft cotton fabric", "Relaxed fit", "Chest pocket detail", "Button-down collar", "Easy care maintenance"]
+  };
+
+  if (!product) {
+    document.body.innerHTML = "<div class='container'><h3>No product selected. Please go back.</h3></div>";
+  } else {
+    const image = product.image || product.img;
+    const title = product.title || product.name;
+    const price = product.price;
+
+    product.image = image;
+    product.title = title;
+
+    document.getElementById("product-img").src = image;
+    document.getElementById("product-title").textContent = title;
+    document.getElementById("product-price").textContent = price;
+    document.getElementById("product-total").textContent = price;
+
+    const descList = productDescriptions[title] || ["High quality material", "Stylish design", "Great value"];
+    const ul = document.getElementById("product-description");
+    ul.innerHTML = descList.map(d => `<li>${d}</li>`).join('');
+  }
+
+  document.querySelectorAll('.size-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  function addToCart() {
+    const selectedSize = document.querySelector('.size-btn.active')?.textContent;
+    if (!selectedSize) {
+      alert("Please select a size.");
+      return;
+    }
+    const total = parseInt(product.price);
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    cartItems.push({ ...product, size: selectedSize, quantity: 1, total });
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    alert("✅ Product added to cart!");
+  }
+
+  function handleBuyNow() {
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    const selectedSize = document.querySelector('.size-btn.active')?.textContent;
+
+    if (!selectedSize) {
+      alert("Please select a size.");
+      return;
+    }
+
+    const total = parseInt(product.price);
+    const item = { ...product, size: selectedSize, quantity: 1, total };
+
+    if (user) {
+      localStorage.setItem("cartItems", JSON.stringify([item]));
+      window.location.href = "checkout.html";
+    } else {
+      localStorage.setItem("buyNowIntent", JSON.stringify(item));
+      alert("Please log in to continue with the purchase.");
+      window.location.href = "login.html";
+    }
+  }
+
+  const similarItems = [
+    { img: "shirt2.jpg", name: "Classic Men Shirt", price: 299 },
+    { img: "saree2.jpg", name: "Elegant Silk Saree", price: 799 },
+    { img: "shoes2.jpg", name: "Running Shoes", price: 499 },
+    { img: "shirt3.jpg", name: "Casual Cotton Shirt", price: 399 }
+  ];
+
+  const container = document.getElementById("similar-products");
+
+  similarItems.forEach((item, index) => {
+    const card = `
+      <div class="col-6 col-md-3">
+        <a href="#" class="text-decoration-none text-dark" onclick="selectProduct(${index})">
+          <div class="card h-100 shadow-sm">
+            <img src="${item.img}" class="card-img-top" style="height: 220px; object-fit: cover;" alt="${item.name}">
+            <div class="card-body">
+              <h6 class="fw-semibold">${item.name}</h6>
+              <p class="mb-1 text-success">₹${item.price}</p>
+              <p class="mb-1 text-muted small">Free Delivery</p>
+              <div class="small text-success">⭐ 4.2 | 1200+ Reviews</div>
+            </div>
+          </div>
+        </a>
+      </div>`;
+    container.innerHTML += card;
+  });
+
+  function selectProduct(index) {
+    const selected = similarItems[index];
+    localStorage.setItem("selectedProduct", JSON.stringify(selected));
+    window.location.href = "buy.html";
+  }
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+

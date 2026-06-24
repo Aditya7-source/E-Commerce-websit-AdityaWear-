@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bags Collection - AdityaWear</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function saveProduct(image, title, price) {
+      const product = { image, title, price };
+      localStorage.setItem("selectedProduct", JSON.stringify(product));
+    }
+  </script>
+  <style>
+    .logo-img {
+      height: 45px;
+      width: 300px;
+      object-fit: contain;
+    }
+
+    .card-img-top {
+      height: 300px !important;
+      width: 100% !important;
+      object-fit: cover;
+      border-radius: 8px 8px 0 0;
+      transition: transform 0.3s ease;
+    }
+
+    .card-img-top:hover {
+      transform: scale(1.03);
+    }
+
+    .card {
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    body{
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<!-- Navbar -->
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Header -->
+<nav class="navbar bg-white shadow-sm px-3 py-2">
+  <div class="container-fluid d-flex align-items-center justify-content-between">
+
+    <!-- Text Logo -->
+    <h4 class="m-0 fw-bold">
+  <span style="color: orange;">ADITYA</span>
+  <span style="color: #0056d2;">WEAR</span>
+</h4>
+
+    <!-- Search Bar (Medium Length) -->
+<div class="mx-4" style="flex: 0 0 1000px;">
+  <input type="text" id="categorySearch" class="form-control" placeholder="Search for products..." />
+</div>
+
+    <!-- Login & Cart -->
+    <div class="d-flex align-items-center">
+      <a href="login.html" class="text-dark text-decoration-none me-4">
+        <i class="bi bi-person"></i> Login
+      </a>
+      <a href="cart.html" class="text-dark text-decoration-none">
+        <i class="bi bi-cart"></i> Cart
+      </a>
+    </div>
+
+  </div>
+</nav>
+<marquee behavior="scroll" direction="left" scrollamount="7" style="background: #f9f9f9; padding: 20px;">
+  <img src="https://img.freepik.com/premium-photo/school-kids-bag-school-bag-pack-day_1307444-1681.jpg" alt="Shoes" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="https://tse3.mm.bing.net/th/id/OIP.l1cM8qdt4T2wZcxTYOGdTgHaHa?w=1080&h=1080&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Saree" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="https://images.pexels.com/photos/1936848/pexels-photo-1936848.jpeg?cs=srgb&dl=pexels-godisable-jacob-1936848.jpg&fm=jpg" alt="T-shirt" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="https://tse2.mm.bing.net/th/id/OIP.XdAJYzytD129NEIdaxqKfwHaE8?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Bag" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="https://images.pexels.com/photos/4830927/pexels-photo-4830927.jpeg?cs=srgb&dl=pexels-diana-light-4830927.jpg&fm=jpg" alt="Jeans" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="https://tse2.mm.bing.net/th/id/OIP.qurDQ0aeTISk1STyIKMX5gHaLH?pid=ImgDet&w=474&h=711&rs=1&o=7&rm=3" alt="Kurtis" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="https://thumbs.dreamstime.com/z/adorable-young-kid-holding-his-school-bag-15318476.jpg" alt="Kurtis" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="https://img.freepik.com/premium-photo/travel-bag-hd-8k-wallpaper-stock-photographic-image_974970-229.jpg" alt="Kurtis" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+
+</marquee>
+<!-- Product Grid -->
+<div class="container my-5">
+  <h4 class="mb-4 fw-bold">Bags</h4>
+  <div class="row g-4">
+
+    <!-- Product Card Example -->
+    <div class="col-6 col-md-3 searchable" data-search=" LovePik Elegant Handbag ">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("bag.jpg", " LovePik Elegant Handbag ", 2499)'>
+        <div class="card h-100 shadow-sm">
+          <img src="bag.jpg" class="card-img-top" alt="LovePik Elegant Handbag ">
+          <div class="card-body">
+            <h6 class="fw-semibold"> LovePik Elegant Handbag </h6>
+            <p class="mb-1 text-success">₹499</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.2 | 8418 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-6 col-md-3 searchable" data-search="Safari Backpack">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("bag1.jpg", "Safari Backpack", 2699)'>
+        <div class="card h-100 shadow-sm">
+          <img src="bag1.jpg" class="card-img-top" alt="Safari Backpack">
+          <div class="card-body">
+            <h6 class="fw-semibold">Safari Backpack</h6>
+            <p class="mb-1 text-success">₹699</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.5 | 5500 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-6 col-md-3 searchable" data-search="Wildcraft Trekking Rucksack">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("bag2.jpg", "Wildcraft Trekking Rucksack", 499)'>
+        <div class="card h-100 shadow-sm">
+          <img src="bag2.jpg" class="card-img-top" alt="Wildcraft Trekking Rucksack">
+          <div class="card-body">
+            <h6 class="fw-semibold">Wildcraft Trekking Rucksack</h6>
+            <p class="mb-1 text-success">₹499</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.2 | 8418 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-6 col-md-3 searchable" data-search="Tigernu Crossbody Sling Bag">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("bag3.jpg", "Tigernu Crossbody Sling Bag", 699)'>
+        <div class="card h-100 shadow-sm">
+          <img src="bag3.jpg" class="card-img-top" alt="Tigernu Crossbody Sling Bag">
+          <div class="card-body">
+            <h6 class="fw-semibold">Tigernu Crossbody Sling Bag</h6>
+            <p class="mb-1 text-success">₹699</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.5 | 5500 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-6 col-md-3 searchable" data-search="American Tourister Hard Trolley">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("bag4.png", "American Tourister Hard Trolley", 1599)'>
+        <div class="card h-100 shadow-sm">
+          <img src="bag4.png" class="card-img-top" alt="American Tourister Hard Trolley">
+          <div class="card-body">
+            <h6 class="fw-semibold">American Tourister Hard Trolley</h6>
+            <p class="mb-1 text-success">₹1599</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.2 | 8418 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-6 col-md-3 searchable" data-search="Indigo Cotton Canvas Tote Bag ">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("bag5.jpg", "Indigo Cotton Canvas Tote Bag ", 1299)'>
+        <div class="card h-100 shadow-sm">
+          <img src="bag5.jpg" class="card-img-top" alt="Indigo Cotton Canvas Tote Bag ">
+          <div class="card-body">
+            <h6 class="fw-semibold">Indigo Cotton Canvas Tote Bag </h6>
+            <p class="mb-1 text-success">₹1299</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.5 | 5500 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-6 col-md-3 searchable" data-search=" Vintage Brown Leather Messenger Bag">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("bag6.jpg", " Vintage Brown Leather Messenger Bag", 1499)'>
+        <div class="card h-100 shadow-sm">
+          <img src="bag6.jpg" class="card-img-top" alt=" Vintage Brown Leather Messenger Bag">
+          <div class="card-body">
+            <h6 class="fw-semibold"> Vintage Brown Leather Messenger Bag</h6>
+            <p class="mb-1 text-success">₹1499</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.2 | 8418 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-6 col-md-3 searchable" data-search="Safari Mint Green Trolley Set ">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("bag7.jpg", "Safari Mint Green Trolley Set ", 1699)'>
+        <div class="card h-100 shadow-sm">
+          <img src="bag7.jpg" class="card-img-top" alt="Safari Mint Green Trolley Set ">
+          <div class="card-body">
+            <h6 class="fw-semibold">Safari Mint Green Trolley Set </h6>
+            <p class="mb-1 text-success">₹1699</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.5 | 5500 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-6 col-md-3 searchable" data-search="XDDES Anti-Theft Laptop Bag  ">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("bag8.jpg", "XDDES Anti-Theft Laptop Bag  ", 1899)'>
+        <div class="card h-100 shadow-sm">
+          <img src="bag8.jpg" class="card-img-top" alt="XDDES Anti-Theft Laptop Bag  ">
+          <div class="card-body">
+            <h6 class="fw-semibold">XDDES Anti-Theft Laptop Bag  </h6>
+            <p class="mb-1 text-success">₹1899</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.2 | 8418 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-6 col-md-3 searchable" data-search="Zouk Handcrafted Beaded Purse">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("bag9.jpg", "Zouk Handcrafted Beaded Purse", 1999)'>
+        <div class="card h-100 shadow-sm">
+          <img src="bag9.jpg" class="card-img-top" alt="Zouk Handcrafted Beaded Purse">
+          <div class="card-body">
+            <h6 class="fw-semibold">Zouk Handcrafted Beaded Purse</h6>
+            <p class="mb-1 text-success">₹1999</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.5 | 5500 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-6 col-md-3 searchable" data-search="Chumbak Printed Kids School Bag">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("bag10.jpg", "Chumbak Printed Kids School Bag", 1399)'>
+        <div class="card h-100 shadow-sm">
+          <img src="bag10.jpg" class="card-img-top" alt="Chumbak Printed Kids School Bag">
+          <div class="card-body">
+            <h6 class="fw-semibold">Chumbak Printed Kids School Bag</h6>
+            <p class="mb-1 text-success">₹1399</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.2 | 8418 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-6 col-md-3 searchable" data-search=" Baggit Black Structured Handbag ">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("bag11.jpg", " Baggit Black Structured Handbag ", 1599)'>
+        <div class="card h-100 shadow-sm">
+          <img src="bag11.jpg" class="card-img-top" alt=" Baggit Black Structured Handbag ">
+          <div class="card-body">
+            <h6 class="fw-semibold"> Baggit Black Structured Handbag </h6>
+            <p class="mb-1 text-success">₹1599</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.5 | 5500 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- ADD remaining products -->
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-4 mt-5">
+  <div class="container text-center">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <h6>About Us</h6>
+        <p class="small">AdityaWear is your go-to fashion destination for Men, Women, and Kids. Quality assured at best prices.</p>
+      </div>
+      <div class="col-md-4">
+        <h6>Contact</h6>
+        <p class="small mb-0">📞 +91 9876543210</p>
+        <p class="small mb-0">✉️ support@adityawear.com</p>
+        <p class="small">📍 Odisha, India</p>
+      </div>
+      <div class="col-md-4">
+        <h6>Follow Us</h6>
+        <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="text-white me-3"><i class="bi bi-twitter-x"></i></a>
+      </div>
+    </div>
+    <hr class="bg-light">
+    <p class="mb-0 small">© 2025 AdityaWear. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Search Script -->
+<script>
+  const searchInput = document.getElementById("categorySearch");
+  const productCards = document.querySelectorAll(".col-6.col-md-3.searchable");
+
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase();
+    productCards.forEach((card) => {
+      const text = card.dataset.search?.toLowerCase() || "";
+      card.style.display = text.includes(query) ? "" : "none";
+    });
+  });
+</script>
+
+</body>
+</html>

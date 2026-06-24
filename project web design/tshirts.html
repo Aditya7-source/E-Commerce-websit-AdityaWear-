@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shirts Collection - AdityaWear</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function saveProduct(image, title, price) {
+      const product = { image, title, price };
+      localStorage.setItem("selectedProduct", JSON.stringify(product));
+    }
+  </script>
+  <style>
+    .logo-img {
+      height: 45px;
+      width: 300px;
+      object-fit: contain;
+    }
+
+    .card-img-top {
+      height: 300px !important;
+      width: 100% !important;
+      object-fit: cover;
+      border-radius: 8px 8px 0 0;
+      transition: transform 0.3s ease;
+    }
+
+    .card-img-top:hover {
+      transform: scale(1.03);
+    }
+
+    .card {
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    body{
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Header -->
+<nav class="navbar bg-white shadow-sm px-3 py-2">
+  <div class="container-fluid d-flex align-items-center justify-content-between">
+
+    <!-- Text Logo -->
+<h4 class="m-0 fw-bold">
+  <span style="color: orange;">ADITYA</span>
+  <span style="color: #0056d2;">WEAR</span>
+</h4>
+
+    <!-- Search Bar (Medium Length) -->
+<div class="mx-4" style="flex: 0 0 1000px;">
+  <input type="text"id="categorySearch" class="form-control" placeholder="Search for products..." />
+</div>
+
+    <!-- Login & Cart -->
+    <div class="d-flex align-items-center">
+      <a href="login.html" class="text-dark text-decoration-none me-4">
+        <i class="bi bi-person"></i> Login
+      </a>
+      <a href="cart.html" class="text-dark text-decoration-none">
+        <i class="bi bi-cart"></i> Cart
+      </a>
+    </div>
+
+  </div>
+</nav>
+
+<marquee behavior="scroll" direction="left" scrollamount="7" style="background: #f9f9f9; padding: 20px;">
+  <img src="https://img.freepik.com/premium-photo/school-kids-bag-school-bag-pack-day_1307444-1681.jpg" alt="Shoes" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="https://tse3.mm.bing.net/th/id/OIP.l1cM8qdt4T2wZcxTYOGdTgHaHa?w=1080&h=1080&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Saree" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="https://images.pexels.com/photos/1936848/pexels-photo-1936848.jpeg?cs=srgb&dl=pexels-godisable-jacob-1936848.jpg&fm=jpg" alt="T-shirt" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="https://tse2.mm.bing.net/th/id/OIP.XdAJYzytD129NEIdaxqKfwHaE8?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Bag" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="https://images.pexels.com/photos/4830927/pexels-photo-4830927.jpeg?cs=srgb&dl=pexels-diana-light-4830927.jpg&fm=jpg" alt="Jeans" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="https://tse2.mm.bing.net/th/id/OIP.qurDQ0aeTISk1STyIKMX5gHaLH?pid=ImgDet&w=474&h=711&rs=1&o=7&rm=3" alt="Kurtis" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="https://thumbs.dreamstime.com/z/adorable-young-kid-holding-his-school-bag-15318476.jpg" alt="Kurtis" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="https://img.freepik.com/premium-photo/travel-bag-hd-8k-wallpaper-stock-photographic-image_974970-229.jpg" alt="Kurtis" style="height: 170px;width: auto; margin-right: 120px; border: 2px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+
+</marquee>
+<!-- Product Grid -->
+<div class="container my-5">
+  <h4 class="mb-4 fw-bold">Shirts</h4>
+  <div class="row g-4">
+
+    <!-- Product Card Example -->
+    <div class="col-6 col-md-3 searchable" data-search=" Cartoon Crush">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shirt1.jpg", " Cartoon Crush", 2499)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shirt1.jpg" class="card-img-top" alt="Cartoon Crush">
+          <div class="card-body">
+            <h6 class="fw-semibold"> Cartoon Crush</h6>
+            <p class="mb-1 text-success">₹499</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.2 | 8418 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-6 col-md-3 searchable" data-search="Virat Vibes">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shirt2.jpg", "Virat Vibes", 2699)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shirt2.jpg" class="card-img-top" alt="Virat Vibes">
+          <div class="card-body">
+            <h6 class="fw-semibold">Virat Vibes</h6>
+            <p class="mb-1 text-success">₹699</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.5 | 5500 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-6 col-md-3 searchable" data-search="Midnight Black">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shirt3.jpg", "Midnight Black", 499)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shirt3.jpg" class="card-img-top" alt="Midnight Black">
+          <div class="card-body">
+            <h6 class="fw-semibold">Midnight Black</h6>
+            <p class="mb-1 text-success">₹499</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.2 | 8418 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-6 col-md-3 searchable" data-search="Urban Hoodie ">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shirt4.jpg", "Urban Hoodie ", 699)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shirt4.jpg" class="card-img-top" alt="Urban Hoodie ">
+          <div class="card-body">
+            <h6 class="fw-semibold">Urban Hoodie</h6>
+            <p class="mb-1 text-success">₹699</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.5 | 5500 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-6 col-md-3 searchable" data-search="Denim Drive">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shirt5.jpg", "Denim Drive", 1599)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shirt5.jpg" class="card-img-top" alt="Denim Drive">
+          <div class="card-body">
+            <h6 class="fw-semibold">Denim Drive</h6>
+            <p class="mb-1 text-success">₹1599</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.2 | 8418 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-6 col-md-3 searchable" data-search="Purple Punch ">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shirt6.jpg", "Purple Punch ", 1299)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shirt6.jpg" class="card-img-top" alt="Purple Punch  ">
+          <div class="card-body">
+            <h6 class="fw-semibold">Purple Punch  </h6>
+            <p class="mb-1 text-success">₹1299</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.5 | 5500 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-6 col-md-3 searchable" data-search="light grey T-shirt">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shirt7.jpg", "light grey T-shirt", 1499)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shirt7.jpg" class="card-img-top" alt="light grey T-shirt">
+          <div class="card-body">
+            <h6 class="fw-semibold">light grey T-shirt</h6>
+            <p class="mb-1 text-success">₹1499</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.2 | 8418 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-6 col-md-3 searchable" data-search="Blazer Flex  ">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shirt8.jpg", "Blazer Flex  ", 1699)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shirt8.jpg" class="card-img-top" alt="Blazer Flex  ">
+          <div class="card-body">
+            <h6 class="fw-semibold">Blazer Flex  </h6>
+            <p class="mb-1 text-success">₹1699</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.5 | 5500 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-6 col-md-3 searchable" data-search="Ethnic dark printed shirt  ">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shirt9.jpg", "Ethnic dark printed shirt  ", 1899)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shirt9.jpg" class="card-img-top" alt="Ethnic dark printed shirt  ">
+          <div class="card-body">
+            <h6 class="fw-semibold">Ethnic dark printed shirt  </h6>
+            <p class="mb-1 text-success">₹1899</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.2 | 8418 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-6 col-md-3 searchable" data-search="Maroon ethnic kurta shirt">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shirt10.jpg", "Maroon ethnic kurta shirt", 1999)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shirt10.jpg" class="card-img-top" alt="Maroon ethnic kurta shirt">
+          <div class="card-body">
+            <h6 class="fw-semibold">Maroon ethnic kurta shirt</h6>
+            <p class="mb-1 text-success">₹1999</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.5 | 5500 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-6 col-md-3 searchable" data-search="Stylish flannel/checkered shirt">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shirt11.jpg", "Stylish flannel/checkered shirt", 1399)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shirt11.jpg" class="card-img-top" alt="Stylish flannel/checkered shirt">
+          <div class="card-body">
+            <h6 class="fw-semibold">Stylish flannel/checkered shirt</h6>
+            <p class="mb-1 text-success">₹1399</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.2 | 8418 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-6 col-md-3 searchable" data-search=" Formal navy blue shirt ">
+      <a href="buy.html" class="text-decoration-none text-dark" onclick='saveProduct("shirt12.jpg", " Formal navy blue shirt ", 1599)'>
+        <div class="card h-100 shadow-sm">
+          <img src="shirt12.jpg" class="card-img-top" alt=" Formal navy blue shirt ">
+          <div class="card-body">
+            <h6 class="fw-semibold"> Formal navy blue shirt </h6>
+            <p class="mb-1 text-success">₹1599</p>
+            <p class="mb-1 text-muted small">Free Delivery</p>
+            <div class="small text-success">⭐ 4.5 | 5500 Reviews</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- ADD remaining products -->
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-4 mt-5">
+  <div class="container text-center">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <h6>About Us</h6>
+        <p class="small">AdityaWear is your go-to fashion destination for Men, Women, and Kids. Quality assured at best prices.</p>
+      </div>
+      <div class="col-md-4">
+        <h6>Contact</h6>
+        <p class="small mb-0">📞 +91 9876543210</p>
+        <p class="small mb-0">✉️ support@adityawear.com</p>
+        <p class="small">📍 Odisha, India</p>
+      </div>
+      <div class="col-md-4">
+        <h6>Follow Us</h6>
+        <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="text-white me-3"><i class="bi bi-twitter-x"></i></a>
+      </div>
+    </div>
+    <hr class="bg-light">
+    <p class="mb-0 small">© 2025 AdityaWear. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Search Script -->
+<script>
+  const searchInput = document.getElementById("categorySearch");
+  const productCards = document.querySelectorAll(".col-6.col-md-3.searchable");
+
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase();
+    productCards.forEach((card) => {
+      const text = card.dataset.search?.toLowerCase() || "";
+      card.style.display = text.includes(query) ? "" : "none";
+    });
+  });
+</script>
+
+</body>
+</html>
